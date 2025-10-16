@@ -1,5 +1,7 @@
 using CashFlow.API.Filters;
 using CashFlow.API.Middleware;
+using CashFlow.Application;
+using CashFlow.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddMvc(opt => opt.Filters.Add(typeof(ExceptionFilter))); //Esta linha configura a API para reconhecer o filtro de exceções criado.
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 
